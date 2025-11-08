@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang cá nhân</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="proflie.css">
+</head>
+<body onload="loadProfile()">
+    <!--Navbrar-->
+    <div class="navbar navbar-expand text-white sticky-top">
+        <!--Logo-->
+        <a href="main.html">
+            <img src="/IMG/Logo3.png" height="100px">
+        </a>
+    </div>
+  
+
+  <div class="container mt-5">
+    <h3 class="text-primary fw-bold mb-4">Thông tin cá nhân</h3>
+
+    <!-- Hộp thông tin -->
+    <div class="card shadow-sm p-4">
+      <form id="profileForm">
+        <div class="mb-3">
+          <label class="form-label">Họ và tên</label>
+          <input type="text" id="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" disabled>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mật khẩu mới (tuỳ chọn)</label>
+          <input type="password" id="password" class="form-control" placeholder="Để trống nếu không đổi">
+        </div>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-secondary me-2" onclick="goBack()">Quay lại</button>
+          <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+        </div>
+      </form>
+    </div>
+    <!-- Thông tin đơn hàng -->
+    <h4>Đơn hàng của bạn</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Mã đơn</th>
+          <th>Sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody"></tbody>
+    </table>
+
+
+    <button class="btn btn-outline-danger mt-4" onclick="logout()">Đăng xuất</button>
+  </div>
+  <script src="profile.js"></script>
+</body>
+</html>

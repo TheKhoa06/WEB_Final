@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!--SEO-->
+    <title>LAPTOPXIN - Laptop Chính Hãng, Giá Tốt, Bảo Hành Uy Tín</title>
+    <meta name="description" content="LAPTOPXIN chuyên cung cấp laptop chính hãng, laptop gaming, laptop văn phòng với giá tốt nhất. Bảo hành uy tín, giao hàng toàn quốc.">
+    <meta name="keywords" content="laptop, laptop chính hãng, laptop gaming, laptop văn phòng, mua laptop, laptop giá rẻ, laptopxịn, laptop uy tín">
+    <meta name="author" content="LAPTOPXIN Team">
+    <!--LINK bs CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--LINK file css-->
+    <link rel="stylesheet" href="main.css">
+    
+    <title>LAPTOPXIN</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-primary">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a href="main.html" class="navbar-brand d-flex align-items-center text-white text-decoration-none">
+                <!-- Logo desktop   -->
+                <img src="/IMG/logo1.png" class="me-2 d-none d-md-inline" height="80" alt="Logo nhỏ">
+                <img src="/IMG/logo2.png" class="me-2 d-none d-md-inline logo2" height="80" alt="Logo lớn">
+                <!-- Logo mobile -->
+                <img src="/IMG/Logo3.png" class="me-inline d-md-none" height="50" alt="Logo mobile">
+            </a>
+
+            <!-- Nội dung navbar -->
+            <!-- Thanh tìm kiếm -->
+            <form class="search d-flex mx-auto my-2 my-md-0 justify-content-center">
+                <input class="form-control me-2 rounded-pill " type="search" placeholder="Bạn cần mua gì?" aria-label="Search">
+            </form>
+            <!---khoa---->
+            <!-- Nút login / sign up -->
+            <div class="d-flex">
+                <!--Nut bam login-->
+                <button class="btn btn-login text-white " data-toggle="modal" data-target="#loginmodal">
+                    Login
+                </button>
+                <!--Nut Bam Sign Up-->
+                <button class="btn btn-signup text-white " data-toggle="modal" data-target="#Sign-up">
+                    Sign Up
+                </button>
+            </div>
+            <!------khoa------------->
+        </div>
+        <div class="marquee-wrapper w-100 mt-2">
+            <p class="marquee-text">
+                <span class="branch">   Cơ sở 1 - Đống Đa, Hà Nội | Số 10 Ngõ 117 Thái Hà, Hà Nội | Điện thoại: 0969 123 555 | Email: example1@gmail.com</span>
+                <span class="branch">   Cơ sở 2 - Thanh Xuân, Hà Nội | Số 20 Ngõ 15 Nguyễn Trãi, Thanh Xuân, Hà Nội | Điện thoại: 0969 123 666 | Email: example2@gmail.com</span>
+                <span class="branch">   Cơ sở 3 - Cầu Giấy, Hà Nội | Số 30 Ngõ 50 Trần Thái Tông, Cầu Giấy, Hà Nội | Điện thoại: 0969 123 777 | Email: example3@gmail.com</span>
+                <span class="branch">   Cơ sở 4 - Hai Bà Trưng, Hà Nội | Số 40 Ngõ 100 Bạch Mai, Hai Bà Trưng, Hà Nội | Điện thoại: 0969 123 888 | Email: example4@gmail.com</span>
+            </p>
+            
+        </div>
+    </nav>
+    <!---khoa---->
+    <!-- Modal đăng nhập -->
+    <div class="modal fade" id="loginmodal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3 rounded-4 shadow">
+
+            <div class="modal-header border-0">
+            <h4 class="modal-title fw-bold">Welcome Back!</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+            <p class="text-muted">Login to your account</p>
+
+            <form id="loginForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="loginEmail" placeholder="Email" required>
+                    <small id="loginEmailError" class="text-danger d-none">Email không hợp lệ</small>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    <small id="loginError" class="text-danger d-none">Sai email hoặc mật khẩu!</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Log In</button>
+
+                <div class="d-flex justify-content-between align-items-center">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="remember">
+                    <label for="remember" class="form-check-label">Remember me</label>
+                </div>
+                <a href="#" class="text-decoration-none">Forgot password?</a>
+                </div>
+            </form>
+            </div>
+
+            <div class="modal-footer border-0">
+            <p class="w-100 text-center text-muted">
+                Don’t have an account? <a href="#" class="text-decoration-none">Sign up</a>
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Modal Sign Up-->
+    <div class="modal" id="Sign-up">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Join Us</h5>
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Create a your account</p>
+                    <!--FORN SIGN UP-->
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Name" required>
+                            <small id="nameError" class="text-danger d-none">Vui lòng nhập tên</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Email" id="signupEmail" required>
+                            <small id="emailError" class="text-danger d-none">Vui lòng nhập đúng định dạng email (ví dụ: name@gmail.com)</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" required>
+                            <small id="passwordError" class="text-danger d-none">Vui lòng nhập mật khẩu</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+                </div>
+                <!--Nut Nhan LOGIN-->
+                <div class="modal-footer">
+                    <small class="text-muted">Already have an account? <a href="#"> Login</a></small>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!---khoa---->
+    <!----vinh----->
+        <!-- Thanh menu -->
+        <div class="hamburger-menu-wrapper mt-3">
+            <button class="btn btn-info hamburger-btn" type="button" id="hamburgerToggle">
+                &#9776;
+            </button>
+            <div class="sidebar-menu" id="sidebarMenu">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="../LENOVO/LENOVO.html">Lenovo</a></li>
+                    <li class="list-group-item"><a href="./THANH/dell.html">Dell</a></li>
+                    <li class="list-group-item"><a href="./HP/HP.html">HP</a></li>
+                    <li class="list-group-item"><a href="./MSI/MSI.html">MSI</a></li>
+                </ul>
+            </div>
+        </div>
+    <div class="container">
+    <!-------->
+        <!--TRANG CHU-->
+        <!--vinh-->
+        <section class="flashsale">
+            <h2 class="flashsale-text">
+                FLASH SALE
+            </h2>
+            <div class="flashsale-slider-wrapper">
+                <button class="slide-btn prev rounded-pill">&#10094;</button>
+                <div class="flashsale-slider">
+                    <a class="flashsale-item" href="products/Legion Pro 5 2025 R9000P (Black).html">
+                        <img src="LENOVO/images1/Legion Pro 5 2025 R9000P (Black).jpg" alt="Laptop 1">
+                        <p>Legion Pro 5 2025 R9000P (Black) 2025</p>
+                        <s><span class="priceold">32,600,000đ</span></s>
+                        <span class="price">31,400,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/Thinkbook X AI 2025.html">
+                        <img src="LENOVO/images1/Thinkbook X AI 2025 - Không Touch.png" alt="Laptop 2">
+                        <p>Thinkbook X AI 2025</p>
+                        <s><span class="priceold">30,000,000đ</span></s>
+                        <span class="price">27,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/Xiaoxin Pro 14c 2025.html">
+                        <img src="LENOVO/images1/Xiaoxin Pro 14c 2025.png" alt="Laptop 3">
+                        <p>Xiaoxin pro 14c 2025</p>
+                        <s><span class="priceold">19,600,000đ</span></s>
+                        <span class="price">19,590,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/Thinkbook 14 G7+ 2025.html">
+                        <img src="LENOVO/images1/Thinkbook 14 G7+ 2025.png" alt="Laptop 4">
+                        <p>Thinkbook 14 G7+</p>
+                        <s><span class="priceold">24,000,000đ</span></s>
+                        <span class="price">22,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/HP Elitebook 8 G1i 14 2025.html">
+                        <img src="HP/images/HP Elitebook 8 G1i 14 2025.png" alt="Laptop 5">
+                        <p>HP Elitebook 8 G1i 14 2025</p>
+                        <s><span class="priceold">20,000,000đ</span></s>
+                        <span class="price">18,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/MSI Katana A15 AI B8VG 466VN.html">
+                        <img src="MSI/images2/MSI Katana A15 AI B8VG 466VN.jpg" alt="Laptop 1">
+                        <p>MSI Katana A15 AI B8VG 466VN</p>
+                        <s><span class="priceold">35,000,000đ</span></s>
+                        <span class="price">33,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/Thinkpad X1 Carbon Gen 13.html">
+                        <img src="LENOVO/images1/Thinkpad X1 Carbon Gen 13.png" alt="Laptop 2">
+                        <p>Thinkpad X1 Carbon Gen 13</p>
+                        <s><span class="priceold">65,800,000đ</span></s>
+                        <span class="price">64,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/Thinkbook X AI 2025 - Touch.html">
+                        <img src="LENOVO/images1/Thinkbook X AI 2025 - Touch.png" alt="Laptop 3">
+                        <p>Thinkbook X AI 2025 - Touch</p>
+                        <s><span class="priceold">28,200,000đ</span></s>
+                        <span class="price">27,790,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/HP ZBook Power G11.html">
+                        <img src="HP/images1/HP ZBook Power G11.png" alt="Laptop 4">
+                        <p>HP Zbook Power G11</p>
+                        <s><span class="priceold">24,000,000đ</span></s>
+                        <span class="price">20,990,000đ</span>
+                    </a>
+                    <a class="flashsale-item" href="products/HP OMEN 16 2025.html">
+                        <img src="HP/images1/HP OMEN 16 2025.png" alt="Laptop 5">
+                        <p>HP OMEN 16 2025</p>
+                        <s><span class="priceold">34,500,000đ</span></s>
+                        <span class="price">32,800,000₫</span>
+                    </a>
+                </div>
+                <button class="slide-btn next rounded-pill">&#10095;</button>
+            </div>
+        </section>
+        <!---------->
+        
+        <section>
+        <h2><br><br>BÁN CHẠY</h2>
+        <!-- Trang 1 -->
+        <div class="bcp1 banchay-page row justify-content-center" id="page1">
+            <!-- 12 sản phẩm -->
+           <a class="img-fluid col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 5 2025 R9000P (Black).html">
+                <img src="LENOVO/images1/Legion Pro 5 2025 R9000P (Black).jpg" alt="Legion Pro 5 2025 R9000P (Black)" />
+                <h3>Legion Pro 5 2025 R9000P (Black)</h3>
+                <p>R9-9955HX | 32GB RAM | 1TB SSD | RTX 5080 | OLED</p>
+            <span class="price">80,000,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 5 2025 R9000P (White).html">
+                <img src="LENOVO/images1/Legion Pro 5 2025 R9000P (White).jpg" alt="Legion Pro 5 2025 R9000P (White)" />
+                <h3>Legion Pro 5 2025 R9000P (White)</h3>
+                <p>R9-9955HX | 32GB RAM | 1TB SSD | RTX 5060 | OLED</p>
+            <span class="price">45,990,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion 7 2025 Y9000X (White).html">
+                <img src="LENOVO/images1/Legion 7 2025 Y9000X (White).jpg" alt="Legion 7 2025 Y9000X (White)" />
+                <h3>Legion 7 2025 Y9000X (White)</h3>
+                <p>Ultra 9-275HX | 32GB RAM | 1TB SSD | RTX 5070</p>
+            <span class="price">56,800,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 7i 2025 Y9000P.html">
+                <img src="LENOVO/images1/Legion Pro 7i 2025 Y9000P.jpg" alt="Legion Pro 7i 2025 Y9000P" />
+                <h3>Legion Pro 7i 2025 Y9000P</h3>
+                <p>Ultra 9-275HX | 32GB RAM | 1TB SSD | RTX 5070Ti</p>
+            <span class="price">66,490,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion 5 2025 Y7000 FHD.html">
+                <img src="LENOVO/images1/Legion 5 2025 Y7000 FHD.jpg" alt="Legion 5 2025 Y7000 FHD" />
+                <h3>Legion 5 2025 Y7000 FHD</h3>
+                <p>I7-13650HX | 24GB RAM | 1TB SSD | RTX 5060</p>
+            <span class="price">32,190,000₫</span>
+            </a>
+          <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Pulse 17 AI C1VGKG 017VN.html">
+               <img src="products/images1/MSI Pulse 17 AI C1VGKG 017VN.jpg" alt="MSI Pulse 17 AI C1VGKG 017VN">
+                    <h3>MSI Pulse 17 AI C1VGKG 017VN</h3>
+                    <p>Intel Core Ultra 7 155H | 32GB | 1TB | RTX 4070</p>
+                <span class="price">49,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 A13UC-2082VN.html">
+                <img src="products/images1/MSI Cyborg 15 A13UC-2082VN.jpg" alt="MSI Cyborg 15 A13UC-2082VN">
+                    <h3>MSI Cyborg 15 A13UC-2082VN</h3>
+                    <p>Core i7-13620H | 16GB | 512GB | RTX 3050</p>
+                <span class="price">19,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 B13WFKG-658VN.html">
+                 <img src="products/images1/MSI Cyborg 15 B13WFKG-658VN.jpg" alt="MSI Cyborg 15 B13WFKG-658VN">
+                    <h3>MSI Cyborg 15 B13WFKG-658VN</h3>
+                    <p>Core i7-13620H | 16GB | 1TB | RTX 5060</p>
+                <span class="price">31,790,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 AI A1VEK-245VN.html">
+                <img src="products/images1/MSI Cyborg 15 AI A1VEK-245VN.jpg" alt="MSI Cyborg 15 AI A1VEK-245VN">
+                    <h3>MSI Cyborg 15 AI A1VEK-245VN</h3>
+                    <p>Ultra 5 135H | 16GB | 512GB | RTX 4050</p>
+                <span class="price">24,990,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Prestige 14 AI Evo C1MG 081VN.html">
+               <img src="products/images1/MSI Prestige 14 AI+ Evo C2VMG 020VN.jpg" alt="MSI Prestige 14 AI Evo C1MG 081VN">
+                    <h3>MSI Prestige 14 AI Evo C1MG 081VN</h3>
+                    <p>Ultra 5 125H | 16GB | 512GB</p>
+                <span class="price">24,490,000₫</span>
+            </a>
+        </div>
+
+        <!-- Trang 2 -->
+        <div class="bcp1 banchay-page row d-none justify-content-center" id="page2">
+            <!-- 12 sản phẩm trang 2 -->
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 16 5620 N6I7110W1.html">
+                <img src="./THANH/img/Laptop Dell 16 DC16251 DC6C7557W1.jpg" alt="Laptop Dell Inspiron 16 5620 N6I7110W1" />
+                <h3>Laptop Dell Inspiron 16 5620 N6I7110W1</h3>
+                <p>Intel Core i7-1255U | MX570A 2GB | 16GB RAM | 1TB SSD</p>
+                <span class="price">26,590,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP ProBook 460 G11.html">
+                <img src="products/images1/HP ProBook 460 G11.png" alt="HP ProBook 460 G11">
+                    <h3>HP ProBook 460 G11</h3>
+                    <p>Ultra 5-125H | 16GB RAM | 512GB SSD</p>
+                <span class="price">19,200,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/Thinkbook X AI 2025.html">
+                <img src="LENOVO/images1/Thinkbook X AI 2025 - Không Touch.png" alt="Thinkbook X AI 2025 - Không Touch">
+                    <h3>Thinkbook X AI 2025 </h3>
+                    <p>Ultra 5-225H | 32GB RAM | 1TB SSD</p>
+                <span class="price">27,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 15 3530 P16WD2.html">
+                <img src="./THANH/img/Dell Inspiron 15 3530.webp" alt="Laptop Dell Inspiron 15 3530 P16WD2" />
+                    <h3>Laptop Dell Inspiron 15 3530 P16WD2</h3>
+                    <p>Intel Core i5-1334U | Intel Iris Xe | 16GB RAM | 512GB SSD</p>
+                <span class="price">15,990,000₫</span>
+            </a>             
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1i 14 2025.html">
+                <img src="products/images1/HP Elitebook 6 G1i 14 2025.png" alt="HP Elitebook 6 G1i 14 2025">
+                    <h3>HP Elitebook 6 G1i 14 2025</h3>
+                    <p>Ultra 7-255H | 32/64GB RAM | 1TB SSD</p>
+                <span class="price">26,200,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Pulse 17 AI C1VGKG 017VN.html">
+               <img src="products/images1/MSI Pulse 17 AI C1VGKG 017VN.jpg" alt="MSI Pulse 17 AI C1VGKG 017VN">
+                    <h3>MSI Pulse 17 AI C1VGKG 017VN</h3>
+                    <p>Intel Core Ultra 7 155H | 32GB | 1TB | RTX 4070</p>
+                <span class="price">49,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1a 14 2025.html">
+                 <img src="products/images1/HP Elitebook 6 G1a 14 2025.png" alt="HP Elitebook 6 G1a 14 2025">
+                    <h3>HP Elitebook 6 G1a 14 2025</h3>
+                    <p>AI 7 350 | 32GB RAM | 1TB SSD</p>
+                <span class="price">26,100,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 8 G1i 16 2025.html">
+               <img src="products/images1/HP Elitebook 8 G1i 16 2025.png" alt="HP Elitebook 8 G1i 16 2025">
+                    <h3>HP Elitebook 8 G1i 16 2025</h3>
+                    <p>Ultra 7-258V | 32GB RAM | 1TB SSD</p>
+                <span class="price">32,300,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Cũ Dell Vostro 15 3530.html">
+                <img src="./THANH/img/Dell Vostro 15 3530.png" alt="Laptop Cũ Dell Vostro 15 3530" />
+                <h3>Laptop Cũ Dell Vostro 15 3530</h3>
+                <p>Intel Core i5-1334U | Intel Graphics | 8GB RAM | 512GB SSD </p>
+                <span class="price">13,999,999đ</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Prestige 14 AI Evo C1MG 081VN.html">
+               <img src="products/images1/MSI Prestige 14 AI+ Evo C2VMG 020VN.jpg" alt="MSI Prestige 14 AI Evo C1MG 081VN">
+                    <h3>MSI Prestige 14 AI Evo C1MG 081VN</h3>
+                    <p>Ultra 5 125H | 16GB | 512GB</p>
+                <span class="price">24,490,000₫</span>
+            </a>
+        </div>
+
+        <!-- Nút phân trang -->
+        <div class="pagination-wrapper text-center mt-3">
+            <button class="btn btn-sm btn-primary page-btn" data-page="1">1</button>
+            <button class="btn btn-sm btn-primary page-btn" data-page="2">2</button>
+        </div>
+        </section>
+        <!-- Các hãng laptop -->
+        <br><br>
+        <section>
+        <!--LENOVO-->
+        <h2><a href="/LENOVO/LENOVO.html" target="_blank" style="background-color: white; color: black;">LENOVO</a></h2>
+        <div class="banchay-page row">
+            <a class="img-fluid col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 5 2025 R9000P (Black).html">
+                <img src="LENOVO/images1/Legion Pro 5 2025 R9000P (Black).jpg" alt="Legion Pro 5 2025 R9000P (Black)" />
+                <h3>Legion Pro 5 2025 R9000P (Black)</h3>
+                <p>R9-9955HX | 32GB RAM | 1TB SSD | RTX 5080 | OLED</p>
+            <span class="price">80,000,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 5 2025 R9000P (White).html">
+                <img src="LENOVO/images1/Legion Pro 5 2025 R9000P (White).jpg" alt="Legion Pro 5 2025 R9000P (White)" />
+                <h3>Legion Pro 5 2025 R9000P (White)</h3>
+                <p>R9-9955HX | 32GB RAM | 1TB SSD | RTX 5060 | OLED</p>
+            <span class="price">45,990,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion 7 2025 Y9000X (White).html">
+                <img src="LENOVO/images1/Legion 7 2025 Y9000X (White).jpg" alt="Legion 7 2025 Y9000X (White)" />
+                <h3>Legion 7 2025 Y9000X (White)</h3>
+                <p>Ultra 9-275HX | 32GB RAM | 1TB SSD | RTX 5070</p>
+            <span class="price">56,800,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion Pro 7i 2025 Y9000P.html">
+                <img src="LENOVO/images1/Legion Pro 7i 2025 Y9000P.jpg" alt="Legion Pro 7i 2025 Y9000P" />
+                <h3>Legion Pro 7i 2025 Y9000P</h3>
+                <p>Ultra 9-275HX | 32GB RAM | 1TB SSD | RTX 5070Ti</p>
+            <span class="price">66,490,000₫</span>
+            </a>
+            <a class="img-fluid  col-12 col-sm-6 col-md-6 col-lg-4 banchay-item" href="products/Legion 5 2025 Y7000 FHD.html">
+                <img src="LENOVO/images1/Legion 5 2025 Y7000 FHD.jpg" alt="Legion 5 2025 Y7000 FHD" />
+                <h3>Legion 5 2025 Y7000 FHD</h3>
+                <p>I7-13650HX | 24GB RAM | 1TB SSD | RTX 5060</p>
+            <span class="price">32,190,000₫</span>
+            </a>
+        </div>
+        <br><br>
+
+        <!--DELL-->
+        <h2><a href="/THANH/dell.html" target="_blank" style="background-color: white; color: black;">DELL</a></h2>
+        <div class="banchay-page row">
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 15 3530 P16WD2.html">
+                <img src="./THANH/img/Dell Inspiron 15 3530.webp" alt="Laptop Dell Inspiron 15 3530 P16WD2" />
+                <h3>Laptop Dell Inspiron 15 3530 P16WD2</h3>
+                <p>Intel Core i5-1334U | Intel Iris Xe | 16GB RAM | 512GB SSD</p>
+                <span class="price">15,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell 15 DC15250 71073959.html">
+                <img src="./THANH/img/Laptop Dell 15 DC15250.webp" alt="Laptop Dell 15 DC15250 71073959" />
+                <h3>Laptop Dell 15 DC15250 71073959</h3>
+                <p>Intel Core i7-1355U | Intel Iris Xe | 16GB RAM | 512GB SSD</p>
+                <span class="price">20,999,000đ</span>
+            </a>
+            <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 16 5620 N6I7110W1.html">
+                <img src="./THANH/img/Laptop Dell 16 DC16251 DC6C7557W1.jpg" alt="Laptop Dell Inspiron 16 5620 N6I7110W1" />
+                <h3>Laptop Dell Inspiron 16 5620 N6I7110W1</h3>
+                <p>Intel Core i7-1255U | MX570A 2GB | 16GB RAM | 1TB SSD</p>
+                <span class="price">26,590,000₫</span>
+            </a>
+            <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Cũ Dell Vostro 15 3530.html">
+                <img src="./THANH/img/Dell Vostro 15 3530.png" alt="Laptop Cũ Dell Vostro 15 3530" />
+                <h3>Laptop Cũ Dell Vostro 15 3530</h3>
+                <p>Intel Core i5-1334U | Intel Graphics | 8GB RAM | 512GB SSD </p>
+                <span class="price">13,999,999đ</span>
+            </a>
+
+            <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell XPS 13 9350 Ultra7.html">
+                <img src="./THANH/img/Laptop Dell XPS 13 9350 Ultra7" alt="Laptop Dell XPS 13 9350 Ultra7" />
+                <h3>Laptop Dell XPS 13 9350 Ultra7</h3>
+                <p>Core Ultra 7 | Intel Arc Graphics | 32GB RAM | 512GB SSD</p>
+                <span class="price">64,990,000₫</span>      
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 14 5441 X1P.html">
+                <img src="./THANH/img/Laptop Dell Inspiron 14 5441 X1P" alt="Laptop Dell Inspiron 14 5441 X1P" />
+                <h3>Laptop Dell Inspiron 14 5441 X1P</h3>
+                <p>Qualcomm Adreno GPU | X1P-64-100 | 16GB RAM | 512GB SSD</p>
+                <span class="price">27,490,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 14 5440.html">
+                <img src="./THANH/img/Laptop Dell Inspiron 14 5440" alt="Laptop Dell Inspiron 14 5440" />
+                <h3>Laptop Dell Inspiron 14 5440</h3>
+                <p> I7-13450H | RTX 4060 | 16GB RAM | 512 SSD</p>
+                <span class="price">24,999,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Inspiron 15 3520 6R6NK.html">
+                <img src="./THANH/img/Laptop Dell 15 DC15250.webp" alt="Laptop Dell Inspiron 15 3520 6R6NK " />
+                <h3>Laptop Dell Inspiron 15 3520 6R6NK </h3>
+                <p>I5-1235U | Intel UHD Graphics | 8GB RAM | 512GB SSD</p>
+                <span class="price">20,000,000đ</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Latitude 7400.html">
+                <img src="./THANH/img/Laptop Dell Latitude 7400" alt="Laptop Dell Latitude 7400" />
+            <h3>Laptop Dell Latitude 7400</h3>
+            <p>I5-8365U | Intel UHD Graphics 620 | DDR4(tối đa 32GB) | 512GB SSD</p>
+            <span class="price">14,999,999đ</span>
+            </a>
+            <a class="col-12 col-sm-6 col-md-3 banchay-item" href="./THANH/Laptop Dell Latitude 7400.html">
+             <img src="./img/Laptop Dell XPS 13 9370 Ultra" alt="  Laptop Dell XPS 13 9350 71058714 Ultra" />
+             <h3>  Laptop Dell XPS 13 9350 71058714 Ultra</h3>
+              <p>Intel core Ultra 5 - 226V, Intel Arc Graphics, 16GB RAM, 1TB SSD</p>
+              <span class="price">28,590,000₫</span>
+            </a>
+        </div>
+        <br><br>
+        <!--HP-->
+        <h2><a href="/HP/HP.html" target="_blank" style="background-color: white; color: black;">HP</a></h2>
+        <div class="banchay-page row">
+            <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP ZBook X G1i 16 2025.html">
+                <img src="products/images1/HP ZBook X G1i 16 2025.png" alt="HP ZBook X G1i 16 2025">
+                    <h3>HP ZBook X G1i 16 2025</h3>
+                    <p>Ultra 9-285H | 32GB RAM | 1TB SSD</p>
+                <span class="price">35,000,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1i 14 2025.html">
+                <img src="products/images1/HP Elitebook 6 G1i 14 2025.png" alt="HP Elitebook 6 G1a 16 2025">
+                    <h3>HP Elitebook 6 G1a 16 2025</h3>
+                    <p>Ryzen 7 H 255 | 32GB RAM | 1TB SSD</p>
+                <span class="price">23,300,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1a 14 2025.html">
+                 <img src="products/images1/HP Elitebook 6 G1a 14 2025.png" alt="HP Elitebook 6 G1a 14 2025">
+                    <h3>HP Elitebook 6 G1a 14 2025</h3>
+                    <p>AI 7 350 | 32GB RAM | 1TB SSD</p>
+                <span class="price">26,100,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1i 14 2025.html">
+                <img src="products/images1/HP Elitebook 6 G1i 14 2025.png" alt="HP Elitebook 6 G1i 14 2025">
+                    <h3>HP Elitebook 6 G1i 14 2025</h3>
+                    <p>Ultra 7-255H | 32/64GB RAM | 1TB SSD</p>
+                <span class="price">26,200,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1i 16 2025.html">
+                <img src="products/images1/HP Elitebook 6 G1i 16 2025.png" alt="HP Elitebook 6 G1i 16 2025">
+                    <h3>HP Elitebook 6 G1i 16 2025</h3>
+                    <p>Ultra 5-225H | 32GB RAM | 1TB SSD | RTX 3050</p>
+                <span class="price">31,300,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 6 G1i 16 2 2025.html.html">
+                <img src="products/images1/HP Elitebook 6 G1i 16 2025.png" alt="HP Elitebook 6 G1i 16 2025">
+                    <h3>HP Elitebook 6 G1i 16 2025</h3>
+                    <p>Ultra 7-255H | 32GB RAM | 1TB SSD | RTX 3050</p>
+                <span class="price">33,300,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 8 G1i 16 2025.html">
+               <img src="products/images1/HP Elitebook 8 G1i 16 2025.png" alt="HP Elitebook 8 G1i 16 2025">
+                    <h3>HP Elitebook 8 G1i 16 2025</h3>
+                    <p>Ultra 7-258V | 32GB RAM | 1TB SSD</p>
+                <span class="price">32,300,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 8 G1i 14 2025.html">
+                <img src="products/images1/HP Elitebook 8 G1i 14 2025.png" alt="HP Elitebook 8 G1i 14 2025">
+                    <h3>HP Elitebook 8 G1i 14 2025</h3>
+                    <p>Ultra 7-258V | 32GB RAM | 1TB SSD</p>
+                <span class="price">31,690,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 845 G11.html">
+                <img src="products/images1/HP Elitebook 845 G11.png" alt="HP Elitebook 845 G11">
+                <h3>HP Elitebook 845 G11</h3>
+                <p>R7-8840HS | 16GB RAM | 1TB SSD</p>
+                <span class="price">23,090,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/HP Elitebook 845 G10 2023.html">
+                 <img src="products/images1/HP Elitebook 845 G10.png" alt="HP Elitebook 865 G10">
+                <h3>HP Elitebook 865 G10</h3>
+                <p>R7-7840H | 16GB RAM | 1TB SSD</p>
+                <span class="price">22,300,000₫</span>
+            </a>
+        </div>
+        
+        <!--MSI-->
+        <br><br>
+        <h2><a href="/MSI/MSI.html" target="_blank" style="background-color: white; color: black;">MSI</a></h2>
+        <div class="banchay-page row">
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Pulse 17 AI C1VGKG 017VN.html">
+               <img src="products/images1/MSI Pulse 17 AI C1VGKG 017VN.jpg" alt="MSI Pulse 17 AI C1VGKG 017VN">
+                    <h3>MSI Pulse 17 AI C1VGKG 017VN</h3>
+                    <p>Intel Core Ultra 7 155H | 32GB | 1TB | RTX 4070</p>
+                <span class="price">49,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 A13UC-2082VN.html">
+                <img src="products/images1/MSI Cyborg 15 A13UC-2082VN.jpg" alt="MSI Cyborg 15 A13UC-2082VN">
+                    <h3>MSI Cyborg 15 A13UC-2082VN</h3>
+                    <p>Core i7-13620H | 16GB | 512GB | RTX 3050</p>
+                <span class="price">19,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 B13WFKG-658VN.html">
+                 <img src="products/images1/MSI Cyborg 15 B13WFKG-658VN.jpg" alt="MSI Cyborg 15 B13WFKG-658VN">
+                    <h3>MSI Cyborg 15 B13WFKG-658VN</h3>
+                    <p>Core i7-13620H | 16GB | 1TB | RTX 5060</p>
+                <span class="price">31,790,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Cyborg 15 AI A1VEK-245VN.html">
+                <img src="products/images1/MSI Cyborg 15 AI A1VEK-245VN.jpg" alt="MSI Cyborg 15 AI A1VEK-245VN">
+                    <h3>MSI Cyborg 15 AI A1VEK-245VN</h3>
+                    <p>Ultra 5 135H | 16GB | 512GB | RTX 4050</p>
+                <span class="price">24,990,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Prestige 14 AI Evo C1MG 081VN.html">
+               <img src="products/images1/MSI Prestige 14 AI+ Evo C2VMG 020VN.jpg" alt="MSI Prestige 14 AI Evo C1MG 081VN">
+                    <h3>MSI Prestige 14 AI Evo C1MG 081VN</h3>
+                    <p>Ultra 5 125H | 16GB | 512GB</p>
+                <span class="price">24,490,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Katana A15 AI B8VG 466VN.html">
+                <img src="products/images1/MSI Katana A15 AI B8VG 466VN.jpg" alt="MSI Katana A15 AI B8VG 466VN">
+                    <h3>MSI Katana A15 AI B8VG 466VN</h3>
+                    <p>Ryzen 9-8945HS | 16GB | 1TB | RTX 4070</p>
+                <span class="price">33,390,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Stealth 14 AI Studio A1VFG 085VN.html">
+                <img src="products/images1/MSI Stealth 14 AI Studio A1VFG 085VN.jpg" alt="MSI Stealth 14 AI Studio A1VFG 085VN">
+                    <h3>MSI Stealth 14 AI Studio A1VFG 085VN</h3>
+                    <p>Intel Core Ultra 7 155H | 32GB | 1TB | RTX 4060</p>
+                <span class="price">44,990,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Stealth A16 AI+ A3XWFG-018VN.html">
+                <img src="products/images1/MSI Stealth A16 AI+ A3XWFG-018VN.jpg" alt="MSI Stealth A16 AI+ A3XWFG-018VN">
+                    <h3>MSI Stealth A16 AI+ A3XWFG-018VN</h3>
+                    <p>Ryzen AI 9 HX 370 | 32GB | 1TB | RTX 5060</p>
+                <span class="price">55,290,000₫</span>
+            </a>
+
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Prestige 14 AI+ Evo C2VMG 020VN.html">
+                <img src="products/images1/MSI Prestige 14 AI+ Evo C2VMG 020VN.jpg" alt="MSI Prestige 14 AI+ Evo C2VMG 020VN">
+                    <h3>MSI Prestige 14 AI+ Evo C2VMG 020VN</h3>
+                    <p>Ultra 7 258V | 32GB | 1TB</p>
+                <span class="price">34,390,000₫</span>
+            </a>
+           <a class="col-12 col-sm-6 col-md-3 banchay-item" href="products/MSI Stealth 16 AI Studio A1VHG 241VN.html">
+                <img src="products/images1/MSI Stealth 16 AI Studio A1VHG 241VN.jpg" alt="MSI Stealth 16 AI Studio A1VHG 241VN">
+                    <h3>MSI Stealth 16 AI Studio A1VHG 241VN</h3>
+                    <p>Ultra 9 185H | 64GB | 1TB | RTX 4080</p>
+                <span class="price">66,790,000₫</span>
+            </a>
+        </div>
+        </section>
+    </div> 
+    <!-- Nút CSKH nhỏ, tròn, sticky -->
+    <div class="customer-support d-flex flex-column">
+        <a href="https://zalo.me/0978735504" target="_blank" class="btn-support zalo text-center">
+            <img src="/IMG/Icon_of_Zalo.svg.png" height="30px">
+        </a>
+        <a href="https://m.me/Danny.da.poett" target="_blank" class="btn-support mess text-center">
+            <img src="/IMG/Facebook_Messenger_logo_2020.svg.png" height="30px">
+        </a>
+        <a href="tel:+84978735504" class="btn-support phone text-center">
+            <img src="/IMG/pngtree-24-hour-service-hotline-png-image_7033295.png" height="40px">
+        </a>
+    </div>
+
+    <br><br>
+
+<!--vinh-->
+    <!--Footer-->
+    <footer>
+        <div class="branch">
+            <h5>Công ty TNHH Thương Mại LAPTOPXIN</h5>
+            <p>Trụ sở chính:</p>
+            <q>Số 10 Ngõ 117 Thái Hà, Đống Đa, Hà Nội</q>
+            <q> Điện thoại: 0969 123 555</q>
+            <q>Email: nigga@gmail.com</q>
+        </div>
+        <div class="branch">
+            <h3>Cơ sở 2 - Thanh Xuân,Hà Nội</h3>
+            <p> Số 20 Ngõ 15 Nguyễn Trãi,Thanh Xuân,Hà Nội<p>
+            <p> Điện thoại: 0969 123 666</p>
+            <p>Email: chotim@gmail.com</p>            
+        </div>
+        <div class="branch">
+            <h3>Cơ sở 3 - Cầu Giấy,Hà Nội</h3>
+            <p> Số 30 Ngõ 50 Trần Thái Tông,Cầu Giấy,Hà Nội<p>
+            <p> Điện thoại: 0969 123 777</p>
+            <p>Email:nIGAA2@gmail.com</p>
+        </div>
+        <div class="branch">
+            <h3>Cơ sở 4 - Hai Bà Trưng,Hà Nội</h3>
+            <p> Số 40 Ngõ 100 Bạch Mai,Hai Bà Trưng,Hà Nội<p>
+            <p> Điện thoại: 0969 123 888</p>
+            <p>Email:nigerian@gmail.com</p>
+        </div>
+    </footer>
+    <!----------------->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/signup.js"></script>
+    <script src="/main.js"></script>
+    <script src="/timkiem.js"></script>
+</body>
+</html>
