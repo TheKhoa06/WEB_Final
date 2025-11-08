@@ -1,379 +1,237 @@
-// Configuration
+// === Cấu hình chung ===
 const CONFIG = {
-    ITEMS_PER_PAGE: 12,
-    ANIMATION_DURATION: 300,
-    BREAKPOINTS: {
-        MOBILE: 480,
-        TABLET: 768,
-        DESKTOP: 1024
-    },
+    ITEMS_PER_PAGE: 12, // Số sản phẩm hiển thị trên mỗi trang
+    ANIMATION_DURATION: 300, // Thời gian animation mặc định (ms)
+    BREAKPOINTS: { MOBILE: 480, TABLET: 768, DESKTOP: 1024 }, // Điểm gãy responsive
     SORTING_DEFAULTS: {
-        DEFAULT: 'default',
-        PRICE_ASC: 'price-asc',
-        PRICE_DESC: 'price-desc',
-        NAME_ASC: 'name-asc',
-        NAME_DESC: 'name-desc'
+        DEFAULT: 'default', PRICE_ASC: 'price-asc', PRICE_DESC: 'price-desc',
+        NAME_ASC: 'name-asc', NAME_DESC: 'name-desc'
     }
 };
 
-// Utility Functions
+// === Các hàm tiện ích ===
 const utils = {
-    extractPrice(priceStr) {
-        return parseInt(priceStr.replace(/[^\d]/g, '')) || 0;
-    },
+    // Lấy số tiền từ chuỗi
+    extractPrice: str => parseInt(str.replace(/[^\d]/g, '')) || 0,
     
-    clamp(value, min, max) {
-        return Math.max(min, Math.min(max, value));
-    },
-    
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
+    // Hàm debounce (trì hoãn thực thi)
+    debounce: (fn, wait) => {
+        let t; 
+        return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
     },
 
-    scrollTo(element, offset = 0) {
-        window.scrollTo({
-            top: element.offsetTop - offset,
-            behavior: 'smooth'
-        });
-    },
+    // Scroll mượt tới phần tử
+    scrollTo: (el, offset = 0) => window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' }),
 
-    addClass(element, className) {
-        if (element) element.classList.add(className);
-    },
+    // Thêm / xóa / toggle class
+    addClass: (el, c) => el?.classList.add(c),
+    removeClass: (el, c) => el?.classList.remove(c),
+    toggleClass: (el, c) => el?.classList.toggle(c),
 
-    removeClass(element, className) {
-        if (element) element.classList.remove(className);
-    },
-
-    toggleClass(element, className) {
-        if (element) element.classList.toggle(className);
+    // Thêm class tạm thời và tự động remove sau duration
+    tempClass: (el, c, duration = CONFIG.ANIMATION_DURATION) => {
+        utils.addClass(el, c);
+        setTimeout(() => utils.removeClass(el, c), duration);
     }
 };
 
-// Product Manager - Handles product display, filtering, and sorting
+// === Quản lý sản phẩm ===
 class ProductManager {
     constructor() {
-        this.grid = document.querySelector('.product-grid');
-        this.products = Array.from(document.querySelectorAll('.product-card'));
-        this.sortSelect = document.getElementById('sort-select');
-        this.searchInput = document.querySelector('.search-input');
-        this.filterButtons = document.querySelectorAll('.filter-btn');
-        
-        this.initialize();
+        this.grid = document.querySelector('.product-grid'); // container sản phẩm
+        this.products = Array.from(document.querySelectorAll('.product-card')); // tất cả card sản phẩm
+        this.sortSelect = document.getElementById('sort-select'); // dropdown sắp xếp
+        this.searchInput = document.querySelector('.search-input'); // input tìm kiếm
+        this.filterButtons = document.querySelectorAll('.filter-btn'); // nút lọc
+        this.init();
     }
 
-    initialize() {
-        this.initializeProducts();
-        this.initializeSorting();
-        this.initializeSearch();
-        this.initializeFilters();
-        this.initializeLazyLoading();
-    }
-
-    initializeProducts() {
+    // Khởi tạo các chức năng
+    init() {
+        // Animation hover và click
         this.products.forEach(card => {
-            // Add hover effects
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                utils.addClass(card, 'hovering');
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                utils.removeClass(card, 'hovering');
-            });
-
-            // Add click animation
-            card.addEventListener('click', () => {
-                utils.addClass(card, 'clicked');
-                setTimeout(() => utils.removeClass(card, 'clicked'), 200);
-            });
+            card.addEventListener('mouseenter', () => card.style.transform='translateY(-5px)');
+            card.addEventListener('mouseleave', () => card.style.transform='translateY(0)');
+            card.addEventListener('click', () => utils.tempClass(card,'clicked',200));
         });
+
+        // Sắp xếp
+        this.sortSelect?.addEventListener('change', () => this.sortProducts(this.sortSelect.value));
+
+        // Tìm kiếm
+        this.searchInput?.addEventListener('input', utils.debounce(() => this.filterProducts(this.searchInput.value),300));
+        this.searchInput?.addEventListener('focus', () => utils.addClass(this.searchInput.parentElement,'focused'));
+        this.searchInput?.addEventListener('blur', () => utils.removeClass(this.searchInput.parentElement,'focused'));
+
+        // Lọc theo category
+        this.filterButtons.forEach(btn => btn.addEventListener('click', () => {
+            this.filterButtons.forEach(b=>utils.removeClass(b,'active'));
+            utils.addClass(btn,'active');
+            this.filterByCategory(btn.dataset.category);
+        }));
+
+        this.initLazyLoad(); // Lazy load ảnh
     }
 
-    initializeSorting() {
-        if (!this.sortSelect) return;
-
-        this.sortSelect.addEventListener('change', () => {
-            const value = this.sortSelect.value;
-            this.sortProducts(value);
-        });
-    }
-
-    initializeSearch() {
-        if (!this.searchInput) return;
-        
-        this.searchInput.addEventListener('input', utils.debounce(() => {
-            const query = this.searchInput.value.toLowerCase().trim();
-            this.filterProducts(query);
-        }, 300));
-
-        // Add search input animations
-        this.searchInput.addEventListener('focus', () => {
-            utils.addClass(this.searchInput.parentElement, 'focused');
-        });
-        
-        this.searchInput.addEventListener('blur', () => {
-            utils.removeClass(this.searchInput.parentElement, 'focused');
-        });
-    }
-
-    initializeFilters() {
-        if (!this.filterButtons.length) return;
-
-        this.filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.filterButtons.forEach(b => utils.removeClass(b, 'active'));
-                utils.addClass(btn, 'active');
-                this.filterByCategory(btn.dataset.category);
-            });
-        });
-    }
-
-    initializeLazyLoading() {
-        if (!('IntersectionObserver' in window)) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target.querySelector('img');
-                        if (img?.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                            utils.addClass(img, 'loaded');
-                        }
-                        observer.unobserve(entry.target);
+    // Lazy load ảnh
+    initLazyLoad() {
+        if(!('IntersectionObserver' in window)) return;
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    const img = entry.target.querySelector('img');
+                    if(img?.dataset.src){ 
+                        img.src = img.dataset.src; 
+                        img.removeAttribute('data-src'); 
+                        utils.addClass(img,'loaded'); 
                     }
-                });
-            },
-            { rootMargin: '50px' }
-        );
-
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin:'50px' });
         this.products.forEach(card => observer.observe(card));
     }
 
+    // Sắp xếp sản phẩm
     sortProducts(type) {
-        const products = [...this.products];
-        
-        products.forEach(p => utils.addClass(p, 'sorting'));
-
-        products.sort((a, b) => {
+        const sorted = [...this.products].sort((a,b)=>{
             const priceA = utils.extractPrice(a.querySelector('.price')?.textContent);
             const priceB = utils.extractPrice(b.querySelector('.price')?.textContent);
-            const nameA = a.querySelector('h3')?.textContent || '';
-            const nameB = b.querySelector('h3')?.textContent || '';
-
-            switch(type) {
-                case CONFIG.SORTING_DEFAULTS.PRICE_ASC: return priceA - priceB;
-                case CONFIG.SORTING_DEFAULTS.PRICE_DESC: return priceB - priceA;
+            const nameA = a.querySelector('h3')?.textContent||'';
+            const nameB = b.querySelector('h3')?.textContent||'';
+            switch(type){
+                case CONFIG.SORTING_DEFAULTS.PRICE_ASC: return priceA-priceB;
+                case CONFIG.SORTING_DEFAULTS.PRICE_DESC: return priceB-priceA;
                 case CONFIG.SORTING_DEFAULTS.NAME_ASC: return nameA.localeCompare(nameB);
                 case CONFIG.SORTING_DEFAULTS.NAME_DESC: return nameB.localeCompare(nameA);
                 default: return 0;
             }
         });
-
-        // Animate and reorder
-        requestAnimationFrame(() => {
-            this.grid.innerHTML = '';
-            products.forEach(product => {
-                this.grid.appendChild(product);
-                requestAnimationFrame(() => utils.removeClass(product, 'sorting'));
+        sorted.forEach(p=>utils.addClass(p,'sorting'));
+        requestAnimationFrame(()=>{
+            this.grid.innerHTML='';
+            sorted.forEach(p=>{
+                this.grid.appendChild(p);
+                requestAnimationFrame(()=>utils.removeClass(p,'sorting'));
             });
         });
     }
 
-    filterProducts(query) {
-        const shouldReset = !query;
-        
-        this.products.forEach(product => {
-            if (shouldReset) {
-                product.style.display = '';
-                utils.addClass(product, 'fade-in');
-                return;
-            }
-
-            const title = product.querySelector('h3')?.textContent.toLowerCase() || '';
-            const description = product.querySelector('.description')?.textContent.toLowerCase() || '';
-            const isVisible = title.includes(query) || description.includes(query);
-            
-            product.style.display = isVisible ? '' : 'none';
-            if (isVisible) utils.addClass(product, 'fade-in');
+    // Lọc sản phẩm theo từ khóa
+    filterProducts(query='') {
+        const q = query.toLowerCase().trim();
+        this.products.forEach(p=>{
+            const text = (p.querySelector('h3')?.textContent + p.querySelector('.description')?.textContent).toLowerCase();
+            const show = !q || text.includes(q);
+            p.style.display = show ? '' : 'none';
+            if(show) utils.tempClass(p,'fade-in');
         });
     }
 
-    filterByCategory(category) {
-        const shouldShowAll = !category || category === 'all';
-        
-        this.products.forEach(product => {
-            const shouldShow = shouldShowAll || product.dataset.category === category;
-            product.style.display = shouldShow ? '' : 'none';
-            if (shouldShow) utils.addClass(product, 'fade-in');
+    // Lọc theo category
+    filterByCategory(cat='all') {
+        this.products.forEach(p=>{
+            const show = !cat || cat==='all' || p.dataset.category===cat;
+            p.style.display = show ? '' : 'none';
+            if(show) utils.tempClass(p,'fade-in');
         });
     }
 }
 
-// Pagination Manager - Handles page navigation and display
+// === Quản lý phân trang ===
 class PaginationManager {
-    constructor() {
-        this.currentPage = 1;
-        this.products = document.querySelectorAll('.product-card');
-        this.totalPages = Math.ceil(this.products.length / CONFIG.ITEMS_PER_PAGE);
-        
-        this.controls = {
-            container: document.querySelector('.pagination'),
-            first: document.querySelector('.page-btn:nth-child(1)'),
-            prev: document.querySelector('.page-btn:nth-child(2)'),
-            current: document.querySelector('.current-page'),
-            next: document.querySelector('.page-btn:nth-child(4)'),
-            last: document.querySelector('.page-btn:nth-child(5)')
-        };
+    constructor(){
+        this.currentPage=1;
+        this.products=document.querySelectorAll('.product-card');
+        this.totalPages=Math.ceil(this.products.length/CONFIG.ITEMS_PER_PAGE);
+        this.container=document.querySelector('.pagination');
 
-        this.initialize();
-    }
-
-    initialize() {
-        if (!this.controls.container) return;
-
-        this.controls.container.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('page-btn')) return;
-            
-            const action = e.target.textContent.trim();
-            switch(action) {
-                case 'Đầu tiên': this.goToPage(1); break;
-                case 'Trước': this.goToPage(this.currentPage - 1); break;
-                case 'Kế tiếp': this.goToPage(this.currentPage + 1); break;
-                case 'Cuối cùng': this.goToPage(this.totalPages); break;
-            }
+        // Click phân trang
+        if(this.container) this.container.addEventListener('click', e=>{
+            if(!e.target.classList.contains('page-btn')) return;
+            const a = e.target.textContent.trim();
+            if(a==='Đầu tiên') this.goToPage(1);
+            else if(a==='Trước') this.goToPage(this.currentPage-1);
+            else if(a==='Kế tiếp') this.goToPage(this.currentPage+1);
+            else if(a==='Cuối cùng') this.goToPage(this.totalPages);
         });
 
-        this.goToPage(1);
+        this.goToPage(1); // hiển thị trang đầu
     }
 
-    goToPage(page) {
-        if (page < 1 || page > this.totalPages) return;
-        
-        this.currentPage = page;
-        const start = (page - 1) * CONFIG.ITEMS_PER_PAGE;
-        const end = start + CONFIG.ITEMS_PER_PAGE;
-
-        // Animate page transition
-        this.products.forEach(p => utils.addClass(p, 'page-transition'));
-
-        requestAnimationFrame(() => {
-            this.products.forEach((product, index) => {
-                const isVisible = index >= start && index < end;
-                product.style.display = isVisible ? '' : 'none';
-                if (isVisible) {
-                    requestAnimationFrame(() => utils.removeClass(product, 'page-transition'));
-                }
-            });
+    // Hiển thị trang
+    goToPage(page){
+        if(page<1||page>this.totalPages) return;
+        this.currentPage=page;
+        const start=(page-1)*CONFIG.ITEMS_PER_PAGE, end=start+CONFIG.ITEMS_PER_PAGE;
+        this.products.forEach((p,i)=>{
+            const show = i>=start && i<end;
+            p.style.display = show ? '' : 'none';
+            if(show) utils.tempClass(p,'page-transition');
         });
-
+        utils.scrollTo(this.container,80);
         this.updateControls();
-        utils.scrollTo(this.controls.container, 80);
     }
 
-    updateControls() {
-        const { current, first, prev, next, last } = this.controls;
-        
-        if (current) current.textContent = this.currentPage;
-        if (first) first.disabled = this.currentPage === 1;
-        if (prev) prev.disabled = this.currentPage === 1;
-        if (next) next.disabled = this.currentPage === this.totalPages;
-        if (last) last.disabled = this.currentPage === this.totalPages;
+    // Cập nhật trạng thái nút
+    updateControls(){
+        const [first,prev,current,next,last]=[...this.container.querySelectorAll('.page-btn')];
+        this.container.querySelector('.current-page').textContent=this.currentPage;
+        first.disabled=prev.disabled=this.currentPage===1;
+        next.disabled=last.disabled=this.currentPage===this.totalPages;
     }
 }
 
-// Menu Manager - Handles mobile menu interactions
+// === Quản lý menu mobile ===
 class MenuManager {
-    constructor() {
-        this.button = document.getElementById('hamburgerToggle');
-        this.sidebar = document.getElementById('sidebarMenu');
-        this.isOpen = false;
-        
-        this.initialize();
-    }
+    constructor(){
+        this.button=document.getElementById('hamburgerToggle');
+        this.sidebar=document.getElementById('sidebarMenu');
+        this.isOpen=false;
 
-    initialize() {
-        if (!this.button || !this.sidebar) return;
+        // Toggle menu khi click
+        this.button?.addEventListener('click', e=>{e.stopPropagation(); this.toggleMenu();});
 
-        // Toggle menu
-        this.button.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleMenu();
-        });
-
-        // Close on outside click
-        document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.sidebar.contains(e.target) && !this.button.contains(e.target)) {
+        // Click ngoài menu đóng menu
+        document.addEventListener('click', e=>{
+            if(this.isOpen && !this.sidebar.contains(e.target) && !this.button.contains(e.target))
                 this.closeMenu();
-            }
         });
 
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.closeMenu();
-            }
+        // Nhấn ESC đóng menu
+        document.addEventListener('keydown', e=>{
+            if(e.key==='Escape' && this.isOpen) this.closeMenu();
         });
     }
 
-    toggleMenu() {
-        this.isOpen = !this.isOpen;
-        utils.toggleClass(this.sidebar, 'active');
-        utils.toggleClass(this.button, 'active');
-        
-        if (this.isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+    toggleMenu(){
+        this.isOpen=!this.isOpen;
+        utils.toggleClass(this.sidebar,'active');
+        utils.toggleClass(this.button,'active');
+        document.body.style.overflow=this.isOpen?'hidden':'';
     }
 
-    closeMenu() {
-        if (!this.isOpen) return;
-        
-        this.isOpen = false;
-        utils.removeClass(this.sidebar, 'active');
-        utils.removeClass(this.button, 'active');
-        document.body.style.overflow = '';
+    closeMenu(){
+        this.isOpen=false;
+        utils.removeClass(this.sidebar,'active');
+        utils.removeClass(this.button,'active');
+        document.body.style.overflow='';
     }
 }
 
-// Initialize everything when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize managers
-    const productManager = new ProductManager();
-    const paginationManager = new PaginationManager();
-    const menuManager = new MenuManager();
+// === Khởi tạo khi DOM sẵn sàng ===
+document.addEventListener('DOMContentLoaded',()=>{
+    new ProductManager();    // Sản phẩm
+    new PaginationManager(); // Phân trang
+    new MenuManager();       // Menu
 
-    // Initialize responsive handler
-    const handleResize = utils.debounce(() => {
-        const width = window.innerWidth;
-        const body = document.body;
-
-        if (width <= CONFIG.BREAKPOINTS.MOBILE) {
-            utils.addClass(body, 'mobile');
-            utils.removeClass(body, 'tablet desktop');
-        } else if (width <= CONFIG.BREAKPOINTS.TABLET) {
-            utils.addClass(body, 'tablet');
-            utils.removeClass(body, 'mobile desktop');
-        } else {
-            utils.addClass(body, 'desktop');
-            utils.removeClass(body, 'mobile tablet');
-        }
-    }, 250);
-
-    // Add resize listener and trigger initial check
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    // Responsive
+    const handleResize = utils.debounce(()=>{
+        const w=window.innerWidth, body=document.body;
+        body.classList.toggle('mobile', w<=CONFIG.BREAKPOINTS.MOBILE);
+        body.classList.toggle('tablet', w>CONFIG.BREAKPOINTS.MOBILE && w<=CONFIG.BREAKPOINTS.TABLET);
+        body.classList.toggle('desktop', w>CONFIG.BREAKPOINTS.TABLET);
+    },250);
+    window.addEventListener('resize',handleResize);
+    handleResize(); // gọi lần đầu
 });
